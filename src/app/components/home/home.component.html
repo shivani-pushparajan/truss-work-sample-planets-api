@@ -1,0 +1,38 @@
+<h1 class="text-center mt-5">Planets</h1>
+<div class="container">
+    <div class="row">
+        <div class="d-flex flex-column h-100">
+            <div class="table-responsive h-100">
+                <ngx-spinner bdColor="rgba(0, 0, 0, 0.3)" type="ball-clip-rotate-pulse"></ngx-spinner>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Climate</th>
+                            <th>No. of residents</th>
+                            <th>Terrains</th>
+                            <th>Population</th>
+                            <th>Water Surface Area (km<sup>2</sup>)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let planet of planets">
+                            <td><a href={{planet.url}} target="_blank">{{ planet?.name | checkValueUnknown | titlecase}}</a></td>
+                            <td> {{ planet?.climate | checkValueUnknown | titlecase}} </td>
+                            <td>{{ planet?.residents?.length | checkValueUnknown | toString | numberSpacing}}</td>
+                            <td>{{ planet?.terrain | checkValueUnknown | titlecase}}</td>
+                            <td>{{ planet?.population | checkValueUnknown | toString | numberSpacing}}</td>
+                            <td>{{ planet?.waterSurfaceArea | checkValueUnknown | toString | numberSpacing}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex col-sm-12 justify-content-evenly">
+            <button class="btn btn-primary btn-md col-sm-3" (click)="previousPageLoad()" [disabled]="previousPage == undefined">Previous</button>
+            <button class="btn btn-primary btn-md col-sm-3" (click)="nextPageLoad()" [disabled]="nextPage == undefined" >Next</button>
+         </div>
+    </div>
+</div>
